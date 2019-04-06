@@ -1,5 +1,7 @@
 # React-Native-Animations
 
-![List](https://github.com/JayTailor45/React-Native-Animations/blob/B1/assets/list.gif)
+## List Card Animation
+> ![List](https://github.com/JayTailor45/React-Native-Animations/blob/B1/assets/list.gif)
 
-![stack](https://github.com/JayTailor45/React-Native-Animations/blob/B1/assets/stack.gif)
+## Stack Card Animation
+> ![stack](https://github.com/JayTailor45/React-Native-Animations/blob/B1/assets/stack.gif)
