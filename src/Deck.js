@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { View, PanResponder, Animated, Dimensions, StyleSheet } from 'react-native'
+import {
+    View,
+    PanResponder,
+    Animated,
+    Dimensions,
+    StyleSheet,
+    LayoutAnimation,
+    UIManager
+} from 'react-native'
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESOLD = 0.25 * SCREEN_WIDTH;
@@ -33,7 +41,12 @@ export default class Deck extends Component {
     this.state = { panResponder, position, index: 0 }
   }
 
-  forceSwipe(direction) {
+  componentWillUpdate() {
+    UIManager.setLayoutAnimationEnabledExprimental && UIManager.setLayoutAnimationEnabledExprimental(true);
+    LayoutAnimation.spring()
+  }
+
+    forceSwipe(direction) {
     const x = direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH;
     Animated.timing(this.state.position, {
       toValue: {x, y: 0},
@@ -94,7 +107,9 @@ export default class Deck extends Component {
         )
       }
       return (
-        <Animated.View key={item.id} style={style.cardStyle}>
+        <Animated.View
+            key={item.id}
+            style={[style.cardStyle, { top: 10 * (i - this.state.index) }]}>
           {this.props.renderCard(item)}
         </Animated.View>
       )
