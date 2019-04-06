@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, PanResponder, Animated, Dimensions } from 'react-native'
+import { View, PanResponder, Animated, Dimensions, StyleSheet } from 'react-native'
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESOLD = 0.25 * SCREEN_WIDTH;
@@ -86,15 +86,19 @@ export default class Deck extends Component {
         return (
             <Animated.View
                 key={item.id}
-                style={this.getCardStyle()}
+                style={[this.getCardStyle(), style.cardStyle]}
                 {...this.state.panResponder.panHandlers}
             >
               {this.props.renderCard(item)}
             </Animated.View>
         )
       }
-      return this.props.renderCard(item)
-    });
+      return (
+        <Animated.View key={item.id} style={style.cardStyle}>
+          {this.props.renderCard(item)}
+        </Animated.View>
+      )
+    }).reverse();
   }
 
   render() {
@@ -106,3 +110,10 @@ export default class Deck extends Component {
   }
 
 }
+
+const style =  StyleSheet.create({
+  cardStyle: {
+    position: 'absolute',
+    width: SCREEN_WIDTH
+  }
+})
