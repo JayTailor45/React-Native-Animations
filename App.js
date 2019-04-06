@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import Deck from './src/Deck'
 import {Button, Card} from 'react-native-elements'
 
@@ -52,13 +52,13 @@ export default class App extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <Deck
                     renderNoMoreCards={this.renderNoMoreCards}
                     data={DATA}
                     renderCard={this.renderCard}
                 />
-            </View>
+            </SafeAreaView>
         );
     }
 }
